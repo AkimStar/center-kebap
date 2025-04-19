@@ -136,7 +136,7 @@ const QualityImageSmall = styled(QualityImage)`
 
 const Quality = () => {
   // Update to the new image path
-  const imageUrl = "/doner_kebab_close_up.jpg"; 
+  const imageUrl = process.env.PUBLIC_URL + '/doner_kebab_close_up.jpg'; 
 
   return (
     <QualityContainer className="section" id="quality">

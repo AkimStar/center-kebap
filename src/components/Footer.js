@@ -75,7 +75,7 @@ const Footer = () => {
         <FooterContent>
           <FooterColumn custom={0} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={variants}>
             <FooterLogo>
-              <img src="/logo.png" alt="Център Кебап" />
+              <img src={process.env.PUBLIC_URL + '/logo.png'} alt="Център Кебап" />
             </FooterLogo>
             <FooterText>
               {footerDescription}

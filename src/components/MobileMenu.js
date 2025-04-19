@@ -39,24 +39,6 @@ const MobileNavLink = styled(motion.a)`
   }
 `;
 
-// Reuse the OrderButton style from Header, maybe slightly larger
-const OrderButtonMobile = styled(motion.button)`
-  background-color: var(--orange-red);
-  color: var(--white);
-  padding: 0.8rem 2rem;
-  border-radius: 4px;
-  font-weight: 600;
-  font-size: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-  transition: background-color 0.3s ease;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-
-  &:hover {
-    background-color: var(--orange-red-darker);
-  }
-`;
-
 // Animation variants
 const overlayVariants = {
   hidden: { opacity: 0 },
@@ -98,16 +80,29 @@ const MobileMenu = ({ isOpen, closeMenu }) => {
             <MobileNavLink href="#footer" onClick={handleLinkClick} variants={linkVariants}>Контакти</MobileNavLink>
           </MobileNavLinks>
 
-          <OrderButtonMobile 
-            className="glf-button" // Add class for GloriaFood script
-            data-glf-cuid={glfCuid} // Add CUID
-            data-glf-ruid={glfRuid} // Add RUID
-            variants={linkVariants} // Use link variants for button too
-            whileHover={{ scale: 1.03 }} 
-            whileTap={{ scale: 0.97 }} 
+          <span
+            className="glf-button"
+            data-glf-cuid="d1ca8277-0183-41a8-92ea-0021fb1c65a1"
+            data-glf-ruid="4673b41b-2e2e-4758-8223-63f883a930bc"
+            style={{
+              display: 'inline-block',
+              background: 'var(--orange-red)',
+              color: 'white',
+              padding: '0.8rem 2rem',
+              borderRadius: '4px',
+              fontWeight: 600,
+              fontSize: '1rem',
+              textTransform: 'uppercase',
+              letterSpacing: '0.8px',
+              cursor: 'pointer',
+              boxShadow: '0 5px 15px rgba(0,0,0,0.3)',
+              border: 'none',
+              textAlign: 'center',
+              marginTop: '2rem'
+            }}
           >
             Поръчай сега
-          </OrderButtonMobile>
+          </span>
         </Overlay>
       )}
     </AnimatePresence>

@@ -75,28 +75,6 @@ const HeroSubtitle = styled(motion.p)`
   }
 `;
 
-const OrderButton = styled(motion.button)`
-  background-color: var(--orange-red);
-  color: var(--white);
-  padding: 0.8rem 2rem;
-  border-radius: 4px;
-  font-weight: 600;
-  font-size: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-  transition: background-color 0.3s ease;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-
-  &:hover {
-    background-color: var(--orange-red-darker);
-  }
-
-  @media (max-width: 768px) {
-    padding: 0.7rem 1.8rem;
-    font-size: 0.9rem;
-  }
-`;
-
 const Hero = () => {
   // Define the IDs here or pass as props if they might change
   const glfCuid = "d1ca8277-0183-41a8-92ea-0021fb1c65a1";
@@ -104,7 +82,7 @@ const Hero = () => {
   return (
     <HeroContainer id="hero">
       <HeroBackground>
-        <img src="/hero-bg.jpg" alt="Delicious kebab background" />
+        <img src={process.env.PUBLIC_URL + '/hero-bg.jpg'} alt="Delicious kebab background" />
       </HeroBackground>
       
       <HeroContent
@@ -128,18 +106,29 @@ const Hero = () => {
           Разгърни апетита си и позволи на вкусовете да те завладеят в неповторимо пътешествие към кулинарно удовлетворение.
         </HeroSubtitle>
         
-        <OrderButton
+        <span
           className="glf-button"
-          data-glf-cuid={glfCuid}
-          data-glf-ruid={glfRuid}
-          whileHover={{ scale: 1.03 }}
-          whileTap={{ scale: 0.97 }}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.9, ease: 'easeOut' }}
+          data-glf-cuid="d1ca8277-0183-41a8-92ea-0021fb1c65a1"
+          data-glf-ruid="4673b41b-2e2e-4758-8223-63f883a930bc"
+          style={{
+            display: 'inline-block',
+            background: 'var(--orange-red)',
+            color: 'white',
+            padding: '0.8rem 2rem',
+            borderRadius: '4px',
+            fontWeight: 600,
+            fontSize: '1rem',
+            textTransform: 'uppercase',
+            letterSpacing: '0.8px',
+            cursor: 'pointer',
+            boxShadow: '0 5px 15px rgba(0,0,0,0.3)',
+            border: 'none',
+            textAlign: 'center',
+            marginTop: '2rem'
+          }}
         >
           Поръчай сега
-        </OrderButton>
+        </span>
       </HeroContent>
     </HeroContainer>
   );

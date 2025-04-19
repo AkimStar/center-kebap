@@ -122,7 +122,7 @@ const AboutText = styled.p`
 
 const AboutUs = () => {
   // Use the provided chef image path
-  const imageUrl = "/fikret_ismail_chef.jpg"; 
+  const imageUrl = process.env.PUBLIC_URL + '/fikret_ismail_chef.jpg'; 
 
   return (
     <AboutUsContainer id="about-us" className="section">

@@ -159,29 +159,6 @@ const HeaderRight = styled.div`
   }
 `;
 
-// Updated OrderButton styling to match Luks Kebab's orange style
-const OrderButton = styled(motion.button)`
-  background-color: var(--orange-red);
-  color: var(--white);
-  padding: 0.6rem 1.3rem;
-  border-radius: 4px;
-  font-weight: 600;
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-  transition: background-color 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-
-  &:hover {
-    background-color: var(--orange-red-darker);
-  }
-
-  @media (max-width: 768px) {
-    padding: 0.5rem 1rem;
-    font-size: 0.8rem;
-  }
-`;
-
 // Main Header Component
 const Header = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => {
   const [scrolled, setScrolled] = useState(false);
@@ -219,7 +196,7 @@ const Header = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => {
       <HeaderInnerContainer>
         <Logo initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2, duration: 0.5 }}>
           <a href="#hero"> {/* Link logo to top */} 
-            <img src="/logo.png" alt="Център Кебап" />
+            <img src={process.env.PUBLIC_URL + '/logo.png'} alt="Център Кебап" />
           </a>
         </Logo>
 
@@ -235,16 +212,28 @@ const Header = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => {
         </NavPill>
 
         <HeaderRight>
-          <OrderButton
-            className="glf-button" // Add class for GloriaFood script
-            data-glf-cuid={glfCuid} // Add CUID
-            data-glf-ruid={glfRuid} // Add RUID
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
-            initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.8, duration: 0.5 }}
+          <span
+            className="glf-button"
+            data-glf-cuid="d1ca8277-0183-41a8-92ea-0021fb1c65a1"
+            data-glf-ruid="4673b41b-2e2e-4758-8223-63f883a930bc"
+            style={{
+              display: 'inline-block',
+              background: 'var(--orange-red)',
+              color: 'white',
+              padding: '0.6rem 1.3rem',
+              borderRadius: '4px',
+              fontWeight: 600,
+              fontSize: '0.85rem',
+              textTransform: 'uppercase',
+              letterSpacing: '0.8px',
+              cursor: 'pointer',
+              boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
+              border: 'none',
+              textAlign: 'center'
+            }}
           >
             Поръчай сега
-          </OrderButton>
+          </span>
         </HeaderRight>
 
         <MobileNavToggle onClick={toggleMobileMenu} isOpen={isMobileMenuOpen}
