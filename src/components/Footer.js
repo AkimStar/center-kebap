@@ -27,10 +27,14 @@ const FooterColumn = styled(motion.div)`
 `;
 
 const FooterLogo = styled.div`
-  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
   img {
-    height: 45px;
-    /* filter: brightness(0) invert(1); */
+    height: 70px;
+    width: auto;
+    display: block;
   }
 `;
 
@@ -50,6 +54,36 @@ const Copyright = styled.div`
   color: var(--grey);
   font-size: 0.8rem;
   opacity: 0.7;
+`;
+
+const FooterNav = styled.nav`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  justify-content: center;
+`;
+
+const FooterNavLink = styled.a`
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-decoration: none;
+  transition: color 0.2s;
+  &:hover {
+    color: var(--orange-red);
+  }
+`;
+
+const FooterColumns = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 2rem;
 `;
 
 const Footer = () => {
@@ -72,17 +106,21 @@ const Footer = () => {
   return (
     <FooterContainer>
       <Container className="container">
-        <FooterContent>
-          <FooterColumn custom={0} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={variants}>
-            <FooterLogo>
-              <img src={process.env.PUBLIC_URL + '/logo.png'} alt="Център Кебап" />
-            </FooterLogo>
-            <FooterText>
-              {footerDescription}
-            </FooterText>
-          </FooterColumn>
-        </FooterContent>
-
+        <FooterColumns>
+          <FooterLogo>
+            <img src={process.env.PUBLIC_URL + '/center-kebab-footer-logo.png'} alt="Center Kebab" />
+          </FooterLogo>
+          <FooterNav>
+            <FooterNavLink href="#hero">Начало</FooterNavLink>
+            <FooterNavLink href="#quality">Концепция</FooterNavLink>
+            <FooterNavLink href="#about-us">За нас</FooterNavLink>
+            <FooterNavLink href="#menu">Меню</FooterNavLink>
+            <FooterNavLink href="#contact">Контакти</FooterNavLink>
+          </FooterNav>
+        </FooterColumns>
+        <FooterText style={{textAlign: 'center', margin: '0 auto 2rem auto'}}>
+          {footerDescription}
+        </FooterText>
         <Copyright>
           Copyright © {currentYear} Център Кебап. Всички права запазени.
         </Copyright>

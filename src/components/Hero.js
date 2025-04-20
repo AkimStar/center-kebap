@@ -20,16 +20,6 @@ const HeroBackground = styled.div`
   height: 100%;
   z-index: 1;
   
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.5));
-  }
-  
   img {
     width: 100%;
     height: 100%;
@@ -48,30 +38,64 @@ const HeroContent = styled(motion.div)`
 `;
 
 const HeroTitle = styled(motion.h1)`
+  font-family: 'Montserrat', sans-serif;
   font-size: var(--text-5xl);
-  font-weight: 700;
+  font-weight: 800;
   margin-bottom: 1.5rem;
-  color: var(--white);
-  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  background: linear-gradient(45deg, var(--purple), var(--blue), var(--white));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  text-shadow: 2px 4px 18px rgba(0,0,0,0.45);
   line-height: 1.2;
-  
   @media (max-width: 768px) {
     font-size: var(--text-4xl);
   }
 `;
 
 const HeroSubtitle = styled(motion.p)`
+  font-family: 'Montserrat', sans-serif;
   font-size: var(--text-lg);
   margin-bottom: 3rem;
-  color: var(--grey);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  background: linear-gradient(45deg, var(--pink), var(--yellow), var(--white));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  text-shadow: 2px 4px 14px rgba(0,0,0,0.45);
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
   line-height: 1.7;
-  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-  
+  font-weight: 800;
   @media (max-width: 768px) {
     font-size: var(--text-base);
+  }
+`;
+
+const OrderButton = styled.span`
+  display: inline-block;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  padding: 0.8rem 1.7rem;
+  border-radius: 4px;
+  background: #ff3d00;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  border: none;
+  text-align: center;
+  margin-top: 2rem;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+  &:hover {
+    background: var(--yellow);
+    color: var(--black);
   }
 `;
 
@@ -84,7 +108,6 @@ const Hero = () => {
       <HeroBackground>
         <img src={process.env.PUBLIC_URL + '/hero-bg.jpg'} alt="Delicious kebab background" />
       </HeroBackground>
-      
       <HeroContent
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -97,7 +120,6 @@ const Hero = () => {
         >
           Център Кебап - Отпусни сетивата с всяка хапка!
         </HeroTitle>
-        
         <HeroSubtitle
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -105,30 +127,13 @@ const Hero = () => {
         >
           Разгърни апетита си и позволи на вкусовете да те завладеят в неповторимо пътешествие към кулинарно удовлетворение.
         </HeroSubtitle>
-        
-        <span
+        <OrderButton
           className="glf-button"
           data-glf-cuid="d1ca8277-0183-41a8-92ea-0021fb1c65a1"
           data-glf-ruid="4673b41b-2e2e-4758-8223-63f883a930bc"
-          style={{
-            display: 'inline-block',
-            background: 'var(--orange-red)',
-            color: 'white',
-            padding: '0.8rem 2rem',
-            borderRadius: '4px',
-            fontWeight: 600,
-            fontSize: '1rem',
-            textTransform: 'uppercase',
-            letterSpacing: '0.8px',
-            cursor: 'pointer',
-            boxShadow: '0 5px 15px rgba(0,0,0,0.3)',
-            border: 'none',
-            textAlign: 'center',
-            marginTop: '2rem'
-          }}
         >
           Поръчай сега
-        </span>
+        </OrderButton>
       </HeroContent>
     </HeroContainer>
   );

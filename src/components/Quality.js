@@ -5,10 +5,8 @@ import { motion } from 'framer-motion';
 // Quality section with gradient bg and custom layout
 const QualityContainer = styled.section`
   position: relative;
-  overflow: hidden;
-  // Gradient background similar to Luks Kebab About section
-  background: linear-gradient(120deg, var(--purple) 0%, var(--blue) 100%);
-  padding: 6rem 0;
+  /* Styles moved to MainContentWrapper in App.js */
+  padding: 6rem 0; /* Keep internal padding */
 `;
 
 // Using global container

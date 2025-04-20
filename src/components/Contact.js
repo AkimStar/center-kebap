@@ -14,11 +14,9 @@ const ClockIcon = () => (
 );
 
 const ContactContainer = styled.section`
-  // Change gradient to purple/blue
-  background: linear-gradient(135deg, var(--purple) 0%, var(--blue) 100%); 
-  padding: 6rem 0; // Use standard section padding
-  overflow: hidden;
-  position: relative; // For potential decorative elements
+  position: relative;
+  /* Styles moved to MainContentWrapper in App.js */
+  padding: 6rem 0;
 `;
 
 const Container = styled.div`

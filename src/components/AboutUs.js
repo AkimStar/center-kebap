@@ -4,10 +4,8 @@ import { motion } from 'framer-motion';
 
 const AboutUsContainer = styled.section`
   position: relative;
-  overflow: hidden;
-  // New gradient for this section (e.g., pink to purple)
-  background: linear-gradient(120deg, var(--pink) 0%, var(--purple) 100%);
-  padding: 6rem 0;
+  /* Styles moved to MainContentWrapper in App.js */
+  padding: 6rem 0; /* Keep internal padding */
 `;
 
 const Container = styled.div`

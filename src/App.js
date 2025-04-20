@@ -20,6 +20,41 @@ const FontImport = styled.div`
   @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Dancing+Script:wght@700&display=swap');
 `;
 
+// Add a single continuous gradient background for the whole app
+const GradientBackground = styled.div`
+  /* This might just provide fallback or initial screen bg */
+  /* The main gradient will be on MainContentWrapper */
+  min-height: 100vh;
+  width: 100%;
+  /* Maybe keep a simpler base gradient here? Or remove? Let's keep it simple for now */
+  /* background: linear-gradient(135deg, #ffe0ec, #fff6b7, #a8edea); */
+`;
+
+const MainContentWrapper = styled.main`
+  position: relative;
+  margin-top: -120px; /* Overlap hero */
+  border-radius: 60px 60px 60px 60px / 120px 120px 60px 60px; /* Rounded top and bottom corners */
+  background: linear-gradient(
+    135deg,
+    #ffe0ec 0%,
+    #ffb6b9 15%,
+    #fff6b7 30%,
+    #feca57 45%,
+    #a8edea 60%,
+    #48dbfb 75%,
+    #9b59b6 90%,
+    #6a89cc 100%
+  );
+  box-shadow: 0 -8px 40px 0 rgba(0,0,0,0.10); /* Shadow for floating effect */
+  overflow: hidden; /* Clip content to rounded corners */
+  z-index: 10;
+
+  @media (max-width: 768px) {
+    margin-top: -60px;
+    border-radius: 32px 32px 32px 32px / 60px 60px 32px 32px;
+  }
+`;
+
 function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -30,31 +65,20 @@ function App() {
 
   return (
     <>
-      {/* Removed hidden GloriaFood span */}
-      {/* <FontImport /> */}
-      <GlobalStyles />
-      
-      {/* Pass mobile menu state and handlers to Header */}
-      <Header 
-        isMobileMenuOpen={isMobileMenuOpen}
-        setIsMobileMenuOpen={setIsMobileMenuOpen}
-      />
-      
-      {/* Render MobileMenu and pass state/handlers */}
-      <MobileMenu 
-        isOpen={isMobileMenuOpen} 
-        closeMenu={closeMobileMenu}
-      />
-
-      <Hero />
-      {/* <Features /> */} {/* Removed */}
-      <Menu />
-      <Quality /> {/* Add the Quality component here */}
-      <AboutUs /> {/* Add the new AboutUs section here */}
-      <Contact /> {/* Add the new Contact section here */}
-      {/* <Testimonials /> */} {/* Removed */}
-      {/* <Contact openOrderModal={openOrderModal} /> */} {/* Removed */}
-      <Footer />
+      {/* GradientBackground can act as a base layer if needed, but might be redundant now */}
+      {/* <GradientBackground> */}
+        <GlobalStyles />
+        <Header isMobileMenuOpen={isMobileMenuOpen} setIsMobileMenuOpen={setIsMobileMenuOpen} />
+        <MobileMenu isOpen={isMobileMenuOpen} closeMenu={closeMobileMenu} />
+        <Hero />
+        <MainContentWrapper>
+          <Menu />
+          <Quality />
+          <AboutUs />
+          <Contact />
+        </MainContentWrapper>
+        <Footer />
+      {/* </GradientBackground> */}
     </>
   );
 }

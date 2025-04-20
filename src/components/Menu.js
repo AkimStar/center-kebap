@@ -11,18 +11,14 @@ const gradientAnimation = keyframes`
 
 const MenuContainer = styled.section`
   position: relative;
-  overflow: hidden;
-  // Use vibrant gradient background from Luks Kebab screenshot
-  background: linear-gradient(135deg, var(--pink) 0%, var(--yellow) 50%, var(--blue) 100%);
-  background-size: 200% 200%;
-  // animation: ${gradientAnimation} 15s ease infinite; // Optional: Animate gradient
-  padding: 6rem 0; // Keep section padding
+  /* Styles moved to MainContentWrapper in App.js */
+  padding: 6rem 0; /* Keep internal padding */
 `;
 
 const Container = styled.div`
   // Uses global container class
   position: relative; // For positioning decorative elements
-  z-index: 2;
+  z-index: 2; // Ensure content is above the ::before pseudo-element
 `;
 
 // Stylized Menu Title - Attempting Luks Kebab effect
