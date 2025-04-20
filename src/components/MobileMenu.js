@@ -70,39 +70,31 @@ const MobileMenu = ({ isOpen, closeMenu }) => {
           initial="hidden"
           animate="visible"
           exit="exit"
+          onClick={closeMenu}
         >
           <MobileNavLinks>
             {/* Use motion.a for individual link animations */}
             <MobileNavLink href="#hero" onClick={handleLinkClick} variants={linkVariants}>Начало</MobileNavLink>
-            <MobileNavLink href="#quality" onClick={handleLinkClick} variants={linkVariants}>Концепция</MobileNavLink>
-            <MobileNavLink href="#about-us" onClick={handleLinkClick} variants={linkVariants}>За нас</MobileNavLink>
             <MobileNavLink href="#menu" onClick={handleLinkClick} variants={linkVariants}>Меню</MobileNavLink>
-            <MobileNavLink href="#footer" onClick={handleLinkClick} variants={linkVariants}>Контакти</MobileNavLink>
+            <MobileNavLink href="#quality" onClick={handleLinkClick} variants={linkVariants}>Качество</MobileNavLink>
+            <MobileNavLink href="#about-us" onClick={handleLinkClick} variants={linkVariants}>За нас</MobileNavLink>
+            <MobileNavLink href="#testimonials" onClick={handleLinkClick} variants={linkVariants}>Отзиви</MobileNavLink>
+            <MobileNavLink href="#contact" onClick={handleLinkClick} variants={linkVariants}>Контакти</MobileNavLink>
           </MobileNavLinks>
 
-          <span
-            className="glf-button"
-            data-glf-cuid="d1ca8277-0183-41a8-92ea-0021fb1c65a1"
-            data-glf-ruid="4673b41b-2e2e-4758-8223-63f883a930bc"
-            style={{
-              display: 'inline-block',
-              background: 'var(--orange-red)',
-              color: 'white',
-              padding: '0.8rem 2rem',
-              borderRadius: '4px',
-              fontWeight: 600,
-              fontSize: '1rem',
-              textTransform: 'uppercase',
-              letterSpacing: '0.8px',
-              cursor: 'pointer',
-              boxShadow: '0 5px 15px rgba(0,0,0,0.3)',
-              border: 'none',
-              textAlign: 'center',
-              marginTop: '2rem'
-            }}
+          {/* Keep motion.div for animation, apply margin */}
+          <motion.div 
+            style={{ marginTop: '2rem' }} 
+            variants={linkVariants}
           >
-            Поръчай сега
-          </span>
+            <span
+              className="glf-button"
+              data-glf-cuid="d1ca8277-0183-41a8-92ea-0021fb1c65a1"
+              data-glf-ruid="4673b41b-2e2e-4758-8223-63f883a930bc"
+            >
+              Поръчай сега
+            </span>
+          </motion.div>
         </Overlay>
       )}
     </AnimatePresence>

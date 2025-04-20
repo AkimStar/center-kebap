@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import FoodIconsBackground from './FoodIconsBackground';
 
 const AboutUsContainer = styled.section`
   position: relative;
@@ -76,55 +77,95 @@ const AboutImage = styled.div`
 // Text content area - on the right
 const AboutContent = styled(motion.div)`
   grid-column: 7 / span 6; // Takes last 6 columns
+  background-color: rgba(20, 20, 20, 0.65);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+  padding: 2rem;
 
   @media (max-width: 992px) {
     grid-column: 2 / span 1;
+    padding: 1.5rem; // Adjust padding for smaller screens
   }
   @media (max-width: 768px) {
     grid-column: 1 / -1;
     text-align: center;
     order: 2; // Text below image on mobile
+    padding: 1.2rem; // Adjust padding for mobile
   }
 `;
 
+const AboutTitleWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 2rem;
+`;
+
 const AboutTitle = styled.h2`
-  font-size: var(--text-4xl);
+  font-size: 4rem;
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 3px;
-  margin-bottom: 2rem;
-  // Another text gradient (e.g., white/pink/yellow)
-  background: linear-gradient(45deg, var(--white), var(--pink), var(--yellow));
+  letter-spacing: 4px;
+  display: inline-block;
+  background: linear-gradient(45deg, var(--blue), var(--purple), var(--white));
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
-  text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+  position: relative;
 
-   @media (max-width: 768px) {
-    font-size: var(--text-3xl);
-    margin-bottom: 1.5rem;
+  @media (max-width: 768px) {
+    font-size: 2.5rem;
+  }
+  @media (max-width: 480px) {
+    font-size: 2rem;
+    letter-spacing: 2px;
   }
 `;
 
 const AboutText = styled.p`
-  color: rgba(255, 255, 255, 0.9); // Brighter white text
+  color: rgba(255, 255, 255, 1); // Brighter white text
   margin-bottom: 1.5rem;
   line-height: 1.7;
   font-size: var(--text-base);
+  font-weight: var(--fw-regular); // Ensure regular weight
 
   strong {
-    font-weight: 600;
-    color: var(--yellow); // Use yellow accent for strong text
+    font-weight: var(--fw-semibold); // Make strong text semi-bold
+    color: var(--orange-red); // Use accent color for highlighted text
   }
 `;
+
+const sectionVariant = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: 'easeOut' }
+  }
+};
 
 const AboutUs = () => {
   // Use the provided chef image path
   const imageUrl = process.env.PUBLIC_URL + '/fikret_ismail_chef.jpg'; 
 
   return (
-    <AboutUsContainer id="about-us" className="section">
+    <AboutUsContainer 
+      id="about-us" 
+      className="section"
+      variants={sectionVariant}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.15 }}
+    >
+      <FoodIconsBackground />
       <Container className="container">
+        <AboutTitleWrapper>
+          <AboutTitle>За нас</AboutTitle>
+        </AboutTitleWrapper>
         <AboutUsLayout>
           <AboutImageWrapper
             initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
@@ -143,12 +184,14 @@ const AboutUs = () => {
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.8, delay: 0.1, ease: 'easeOut' }}
           >
-            <AboutTitle>За нас</AboutTitle>
             <AboutText>
               В сърцето на Център Кебап е нашият сплотен екип, ръководен от главния готвач и собственик <strong>Фикрет Исмаил</strong>. Заедно споделяме страстта към храната и ангажимента към перфектния вкус.
             </AboutText>
             <AboutText>
               Ние държим на <strong>безкомпромисно качество</strong> и <strong>безупречна чистота</strong>. Всяко ястие се приготвя с внимание към детайла, от подбора на най-пресните продукти до финалното поднасяне, за да гарантираме едно наистина <strong>незабравимо и вкусно</strong> изживяване.
+            </AboutText>
+            <AboutText>
+              Вашето удоволствие е нашето вдъхновение – с всяка хапка искаме да ви накараме да се върнете отново.
             </AboutText>
             {/* Add more text if needed */}
           </AboutContent>

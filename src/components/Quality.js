@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import FoodIconsBackground from './FoodIconsBackground';
 
 // Quality section with gradient bg and custom layout
 const QualityContainer = styled.section`
@@ -39,46 +40,66 @@ const QualityLayout = styled.div`
 // Text content area
 const QualityContent = styled(motion.div)`
   grid-column: 1 / span 6; // Takes first 6 columns
+  background-color: rgba(20, 20, 20, 0.65);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+  padding: 2rem;
 
   @media (max-width: 992px) {
     grid-column: 1 / span 1; // Takes first col
+    padding: 1.5rem;
   }
   @media (max-width: 768px) {
     grid-column: 1 / -1; // Full width on mobile
     text-align: center;
     order: 2; // Text below image on mobile
+    padding: 1.2rem;
   }
 `;
 
 // Update title style
+const QualityTitleWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 2rem;
+`;
+
 const QualityTitle = styled.h2`
-  font-size: var(--text-4xl); // Match Contact title size
+  font-size: 4rem;
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 3px;
-  margin-bottom: 2rem; // Adjusted margin
-  // Use a different text gradient (e.g., pink/yellow)
-  background: linear-gradient(45deg, var(--pink), var(--yellow), var(--white));
+  letter-spacing: 4px;
+  display: inline-block;
+  background: linear-gradient(45deg, var(--blue), var(--purple), var(--white));
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
-  text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+  position: relative;
 
-   @media (max-width: 768px) {
-    font-size: var(--text-3xl);
-    margin-bottom: 1.5rem;
+  @media (max-width: 768px) {
+    font-size: 2.5rem;
+  }
+  @media (max-width: 480px) {
+    font-size: 2rem;
+    letter-spacing: 2px;
   }
 `;
 
 const QualityText = styled.p`
-  color: rgba(255, 255, 255, 0.85); 
+  color: rgba(255, 255, 255, 1); 
   margin-bottom: 1rem;
   line-height: 1.7;
   font-size: var(--text-base);
+  font-weight: var(--fw-regular);
 
   strong {
-    font-weight: 600;
-    color: var(--white);
+    font-weight: var(--fw-semibold);
+    color: var(--orange-red);
   }
 `;
 
@@ -132,13 +153,33 @@ const QualityImageSmall = styled(QualityImage)`
 `;
 */
 
+const sectionVariant = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: 'easeOut' }
+  }
+};
+
 const Quality = () => {
   // Update to the new image path
   const imageUrl = process.env.PUBLIC_URL + '/doner_kebab_close_up.jpg'; 
 
   return (
-    <QualityContainer className="section" id="quality">
+    <QualityContainer 
+      className="section" 
+      id="quality"
+      variants={sectionVariant}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.15 }}
+    >
+      <FoodIconsBackground />
       <Container className="container">
+        <QualityTitleWrapper>
+          <QualityTitle>Качество</QualityTitle>
+        </QualityTitleWrapper>
         <QualityLayout>
           <QualityContent
             initial={{ opacity: 0, x: -50 }}
@@ -146,13 +187,17 @@ const Quality = () => {
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
           >
-            {/* Update Title Text */}
-            <QualityTitle>Качество</QualityTitle>
             <QualityText>
               В Център Кебап вярваме, че тайната на неустоимия вкус се крие в качеството на продуктите и страстта към готвенето.
             </QualityText>
             <QualityText>
-              Ние използваме само подбрани, <strong>пресни съставки</strong> и доказани рецепти, за да гарантираме, че всяка хапка е истинско удоволствие. Нашата цел е да предложим не просто храна, а изживяване.
+              Ние използваме само <strong>подбрани, пресни съставки и доказани рецепти,</strong> за да гарантираме, че всяка хапка е <strong>истинско удоволствие.</strong> Нашата цел е да предложим не просто храна, а изживяване.
+            </QualityText>
+            <QualityText>
+              При нас ще откриете автентични вкусове, приготвени с майсторство и внимание към всеки детайл. Нашата философия е проста: качествени продукти, перфектно изпълнение.
+            </QualityText>
+            <QualityText>
+              Заповядайте и се насладете на атмосфера, в която ще усетите свежест и вкус във всяко ястие.
             </QualityText>
           </QualityContent>
 

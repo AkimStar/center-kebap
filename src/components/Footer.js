@@ -112,9 +112,10 @@ const Footer = () => {
           </FooterLogo>
           <FooterNav>
             <FooterNavLink href="#hero">Начало</FooterNavLink>
-            <FooterNavLink href="#quality">Концепция</FooterNavLink>
-            <FooterNavLink href="#about-us">За нас</FooterNavLink>
             <FooterNavLink href="#menu">Меню</FooterNavLink>
+            <FooterNavLink href="#quality">Качество</FooterNavLink>
+            <FooterNavLink href="#about-us">За нас</FooterNavLink>
+            <FooterNavLink href="#testimonials">Отзиви</FooterNavLink>
             <FooterNavLink href="#contact">Контакти</FooterNavLink>
           </FooterNav>
         </FooterColumns>

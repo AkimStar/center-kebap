@@ -16,8 +16,15 @@ const GlobalStyles = createGlobalStyle`
     --light-grey-bg: #1e1e1e; // Slightly lighter bg for cards/sections if needed
 
     // Fonts (Keep Montserrat, consider adding a bolder display font if needed)
-    --font-primary: 'Montserrat', sans-serif;
+    --font-primary: 'Inter', sans-serif;
     --font-secondary: 'Dancing Script', cursive; // Keep for specific decorative text
+
+    // Font Weights
+    --fw-regular: 400;
+    --fw-medium: 500;
+    --fw-semibold: 600;
+    --fw-bold: 700;
+    --fw-extrabold: 800;
 
     // Font sizes (Might need adjustment per component)
     --text-base: 16px;
@@ -35,6 +42,7 @@ const GlobalStyles = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Inter', sans-serif !important;
   }
 
   html {
@@ -48,6 +56,7 @@ const GlobalStyles = createGlobalStyle`
     overflow-x: hidden;
     line-height: 1.6;
     font-size: var(--text-base);
+    font-weight: var(--fw-regular);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -74,10 +83,10 @@ const GlobalStyles = createGlobalStyle`
 
   // Base Heading Styles (can be overridden in components)
   h1, h2, h3, h4, h5, h6 {
-    font-weight: 700; // Default bold
-    line-height: 1.3; // Adjusted line height
+    font-weight: var(--fw-bold);
+    line-height: 1.3;
     margin-bottom: 1rem;
-    color: var(--white); // Default white headings
+    color: var(--white);
   }
 
   h1 { font-size: var(--text-4xl); }
@@ -95,18 +104,19 @@ const GlobalStyles = createGlobalStyle`
   p {
     margin-bottom: 1rem;
     color: var(--grey);
+    font-weight: var(--fw-regular);
   }
 
   // Use more specific container for full-width sections if needed
   .container {
-    max-width: 1140px; // Standard container width
+    max-width: 1140px;
     margin: 0 auto;
-    padding: 0 15px; // Standard padding (closer to Bootstrap)
+    padding: 0 15px;
     width: 100%;
   }
 
   .section {
-    padding: 6rem 0; // Increased padding for sections
+    padding: 6rem 0;
 
     @media (max-width: 768px) {
       padding: 4rem 0;
@@ -120,6 +130,39 @@ const GlobalStyles = createGlobalStyle`
 
   .text-primary {
     color: var(--orange-red);
+  }
+
+  /* Global Styles for GloriaFood Button */
+  span.glf-button {
+    /* Apply standard styles first */
+    display: inline-block !important;
+    font-family: var(--font-primary) !important;
+    font-weight: var(--fw-semibold) !important;
+    font-size: 0.9rem !important; /* Standard button size */
+    text-transform: uppercase !important;
+    letter-spacing: 0.8px !important;
+    padding: 0.8rem 1.7rem !important; /* Standard padding */
+    border-radius: 999px !important;
+    background: var(--orange-red) !important;
+    color: var(--white) !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2) !important;
+    border: none !important;
+    text-align: center !important;
+    transition: background-color 0.2s ease !important;
+    cursor: pointer !important; // Ensure cursor is pointer
+
+    &:hover {
+      background-color: var(--orange-red-darker) !important;
+    }
+  }
+
+  /* Override for smaller header button */
+  /* Assuming HeaderRight styled component keeps its unique class name */
+  header span.glf-button, /* General header context */
+  div[class*="Header__HeaderRight"] span.glf-button /* More specific using styled-components generated class */
+  {
+    font-size: 0.7rem !important; 
+    padding: 0.5rem 0.8rem !important; 
   }
 
   // Add more helpers if needed

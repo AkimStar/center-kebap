@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/center-kebap/static/css/main.e6c13ad2.css",
+    "main.js": "/center-kebap/static/js/main.d76f61ba.js",
+    "index.html": "/center-kebap/index.html",
+    "main.e6c13ad2.css.map": "/center-kebap/static/css/main.e6c13ad2.css.map",
+    "main.d76f61ba.js.map": "/center-kebap/static/js/main.d76f61ba.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.d76f61ba.js"
+  ]
+}

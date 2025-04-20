@@ -1,14 +1,15 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import GlobalStyles from './styles/GlobalStyles';
 import Header from './components/Header';
 import Hero from './components/Hero';
 // import Features from './components/Features'; // To be removed/replaced
 import Menu from './components/Menu';
+import SplitTextScrollAnimation from './components/SplitTextScrollAnimation'; // Import the new component
 import Quality from './components/Quality'; // Import the new component
 import AboutUs from './components/AboutUs'; // Import the new AboutUs component
 import Contact from './components/Contact'; // Import the new Contact component
-// import Testimonials from './components/Testimonials'; // To be removed
+import Testimonials from './components/Testimonials'; // Import Testimonials
 // import Contact from './components/Contact'; // To be removed
 import Footer from './components/Footer';
 import MobileMenu from './components/MobileMenu'; // Import MobileMenu
@@ -30,6 +31,13 @@ const GradientBackground = styled.div`
   /* background: linear-gradient(135deg, #ffe0ec, #fff6b7, #a8edea); */
 `;
 
+// Keyframes for subtle background gradient animation
+const gradientShift = keyframes`
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+`;
+
 const MainContentWrapper = styled.main`
   position: relative;
   margin-top: -120px; /* Overlap hero */
@@ -48,6 +56,8 @@ const MainContentWrapper = styled.main`
   box-shadow: 0 -8px 40px 0 rgba(0,0,0,0.10); /* Shadow for floating effect */
   overflow: hidden; /* Clip content to rounded corners */
   z-index: 10;
+  will-change: background-position;
+  transform: translateZ(0);
 
   @media (max-width: 768px) {
     margin-top: -60px;
@@ -57,6 +67,23 @@ const MainContentWrapper = styled.main`
 
 function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Add effect for parallax scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      const offset = window.scrollY * 0.5; // Parallax factor (0.5 means half speed)
+      document.documentElement.style.setProperty('--parallax-offset', `${offset}px`);
+    };
+
+    // Add listener
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    // Set initial position
+    handleScroll();
+
+    // Cleanup listener on unmount
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []); // Empty dependency array ensures this runs only once on mount/unmount
 
   // Function to close mobile menu (can be passed down)
   const closeMobileMenu = () => {
@@ -73,8 +100,10 @@ function App() {
         <Hero />
         <MainContentWrapper>
           <Menu />
+          <SplitTextScrollAnimation />
           <Quality />
           <AboutUs />
+          <Testimonials />
           <Contact />
         </MainContentWrapper>
         <Footer />

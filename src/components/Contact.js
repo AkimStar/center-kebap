@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import FoodIconsBackground from './FoodIconsBackground';
 
 // Using the same icons as before
 const PhoneIcon = () => (
@@ -63,11 +64,12 @@ const ContactLayout = styled.div`
 `;
 
 const ContactInfo = styled(motion.div)`
-  background-color: rgba(17, 17, 17, 0.7); // Slightly more opaque background
-  backdrop-filter: blur(8px); // Increase blur
+  background-color: rgba(20, 20, 20, 0.65); // Match MenuList style
+  backdrop-filter: blur(8px); // Keep blur or adjust slightly if needed
+  border: 1px solid rgba(255, 255, 255, 0.1); // Match MenuList style
+  border-radius: 15px; // Match MenuList style
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37); // Match MenuList style
   padding: 2.5rem;
-  border-radius: 10px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
   height: 100%; // Try to match map height
   display: flex; // Use flex to help structure content
   flex-direction: column;
@@ -108,6 +110,7 @@ const ContactItem = styled.li`
   span, a {
       line-height: 1.5;
       color: var(--white); // Make text white
+      font-weight: 600; // Make text bold
   }
 
   a {
@@ -135,13 +138,57 @@ const MapWrapper = styled(motion.div)`
   }
 `;
 
+const ContactTitleWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 2rem;
+`;
+
+const ContactTitle = styled.h2`
+  font-size: 4rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  display: inline-block;
+  background: linear-gradient(180deg, var(--blue), var(--purple), var(--white));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+  position: relative;
+
+  @media (max-width: 768px) {
+    font-size: 2.5rem;
+  }
+  @media (max-width: 480px) {
+    font-size: 2rem;
+    letter-spacing: 2px;
+  }
+`;
+
+const sectionVariant = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: 'easeOut' }
+  }
+};
+
+// New separator line styled component
+const Separator = styled.div`
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin: 1.5rem 0;
+`;
 
 const Contact = () => {
   // Contact Info
-  const address = "Гр. Силистра ул. Добрич №73";
+  const address = "Гр. Силистра ул. Добрич №71";
   const phone = "0886 874 351";
   const phoneLink = "tel:0886874351";
-  const hours = "Понеделник - Неделя: 10:00 - 22:00";
+  const hours = "Понеделник - Неделя: 10:00 - 19:00";
   const mapSrc = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d716.1340166061667!2d27.271125919713548!3d44.11356396105441!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b01f000d74d967%3A0x68f23b09209bfdbb!2z0KbQtdC90YLRitGAINCa0LXQsdCw0L8!5e0!3m2!1sbg!2sbg!4v1745072915775!5m2!1sbg!2sbg";
 
   const contentVariants = {
@@ -155,21 +202,27 @@ const Contact = () => {
   };
 
   return (
-    <ContactContainer id="contact" className="section">
+    <ContactContainer 
+      id="contact" 
+      className="section"
+      variants={sectionVariant}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.15 }}
+    >
+      <FoodIconsBackground />
       <Container className="container">
-        <SectionTitle
-          initial={{ opacity: 0, y: -30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
-        >
-          Свържете се с нас
-        </SectionTitle>
+        <ContactTitleWrapper>
+          <ContactTitle>Контакти</ContactTitle>
+        </ContactTitleWrapper>
         <ContactLayout>
           <ContactInfo variants={contentVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }}>
-            <InfoText>
-              Намерете ни лесно или се свържете с нас. Очакваме Ви!
-            </InfoText>
+            {/* Top centered text */}
+            <div style={{ textAlign: 'center', fontWeight: 600, color: 'rgba(255,255,255,0.95)', fontSize: '1.1rem' }}>
+              Намерете ни лесно или се свържете с нас.
+            </div>
+            <Separator />
+            {/* Middle: contact info list */}
             <ContactList>
               <ContactItem>
                 <MapPinIcon />
@@ -184,6 +237,11 @@ const Contact = () => {
                 <span>{hours}</span>
               </ContactItem>
             </ContactList>
+            <Separator />
+            {/* Bottom centered text */}
+            <div style={{ textAlign: 'center', fontWeight: 600, color: 'rgba(255,255,255,0.95)', fontSize: '1.1rem' }}>
+              Очакваме Ви!
+            </div>
           </ContactInfo>
           <MapWrapper variants={mapVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }}>
             <iframe 

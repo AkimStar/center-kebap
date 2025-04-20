@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import FoodIconsBackground from './FoodIconsBackground';
 
 const HeroContainer = styled.section`
   min-height: 100vh;
@@ -19,28 +20,40 @@ const HeroBackground = styled.div`
   width: 100%;
   height: 100%;
   z-index: 1;
+  will-change: transform;
+  transform: translateY(var(--parallax-offset, 0px));
   
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transform: scale(1.05);
-    filter: blur(1px);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
+    z-index: 2;
   }
 `;
 
 const HeroContent = styled(motion.div)`
   position: relative;
-  z-index: 2;
+  z-index: 3;
   text-align: center;
-  max-width: 750px;
+  max-width: 850px;
   padding: 0 15px;
 `;
 
 const HeroTitle = styled(motion.h1)`
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: var(--text-5xl);
-  font-weight: 800;
+  font-weight: var(--fw-extrabold);
   margin-bottom: 1.5rem;
   text-transform: uppercase;
   letter-spacing: 3px;
@@ -48,7 +61,7 @@ const HeroTitle = styled(motion.h1)`
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
-  text-shadow: 2px 4px 18px rgba(0,0,0,0.45);
+  text-shadow: 2px 4px 12px rgba(0,0,0,0.4);
   line-height: 1.2;
   @media (max-width: 768px) {
     font-size: var(--text-4xl);
@@ -56,7 +69,7 @@ const HeroTitle = styled(motion.h1)`
 `;
 
 const HeroSubtitle = styled(motion.p)`
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: var(--text-lg);
   margin-bottom: 3rem;
   text-transform: uppercase;
@@ -65,75 +78,64 @@ const HeroSubtitle = styled(motion.p)`
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
-  text-shadow: 2px 4px 14px rgba(0,0,0,0.45);
+  text-shadow: 2px 2px 10px rgba(0,0,0,0.4);
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
   line-height: 1.7;
-  font-weight: 800;
+  font-weight: var(--fw-bold);
   @media (max-width: 768px) {
     font-size: var(--text-base);
   }
 `;
 
-const OrderButton = styled.span`
-  display: inline-block;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
-  font-size: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-  padding: 0.8rem 1.7rem;
-  border-radius: 4px;
-  background: #ff3d00;
-  color: #fff;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  border: none;
-  text-align: center;
-  margin-top: 2rem;
-  cursor: pointer;
-  transition: background 0.3s, color 0.3s;
-  &:hover {
-    background: var(--yellow);
-    color: var(--black);
+const sectionVariant = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: 'easeOut' }
   }
-`;
+};
 
 const Hero = () => {
-  // Define the IDs here or pass as props if they might change
   const glfCuid = "d1ca8277-0183-41a8-92ea-0021fb1c65a1";
   const glfRuid = "4673b41b-2e2e-4758-8223-63f883a930bc";
+  const heroTitleText = "Център Кебап - Отпусни сетивата с всяка хапка!";
+
   return (
-    <HeroContainer id="hero">
+    <HeroContainer 
+      id="hero"
+    >
+      <FoodIconsBackground />
       <HeroBackground>
         <img src={process.env.PUBLIC_URL + '/hero-bg.jpg'} alt="Delicious kebab background" />
       </HeroBackground>
-      <HeroContent
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.0, delay: 0.3, ease: 'easeOut' }}
-      >
-        <HeroTitle
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5, ease: 'easeOut' }}
+      <HeroContent> 
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.5, ease: 'easeOut' }}>
+          <HeroTitle>
+            {heroTitleText}
+          </HeroTitle>
+        </motion.div>
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 1.2, ease: 'easeOut' }}>
+          <HeroSubtitle>
+            Разгърни апетита си и позволи на вкусовете да те завладеят в неповторимо пътешествие към кулинарно удовлетворение.
+          </HeroSubtitle>
+        </motion.div>
+        <motion.div 
+          style={{ marginTop: '2rem' }} 
+          initial={{ opacity: 0, y: 20 }} 
+          animate={{ opacity: 1, y: 0 }} 
+          transition={{ duration: 0.8, delay: 0.9, ease: 'easeOut' }}
         >
-          Център Кебап - Отпусни сетивата с всяка хапка!
-        </HeroTitle>
-        <HeroSubtitle
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.7, ease: 'easeOut' }}
-        >
-          Разгърни апетита си и позволи на вкусовете да те завладеят в неповторимо пътешествие към кулинарно удовлетворение.
-        </HeroSubtitle>
-        <OrderButton
-          className="glf-button"
-          data-glf-cuid="d1ca8277-0183-41a8-92ea-0021fb1c65a1"
-          data-glf-ruid="4673b41b-2e2e-4758-8223-63f883a930bc"
-        >
-          Поръчай сега
-        </OrderButton>
+          <span
+            className="glf-button"
+            data-glf-cuid={glfCuid}
+            data-glf-ruid={glfRuid}
+          >
+            Поръчай сега
+          </span>
+        </motion.div>
       </HeroContent>
     </HeroContainer>
   );

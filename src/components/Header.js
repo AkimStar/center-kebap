@@ -84,6 +84,7 @@ const NavLink = styled.a`
   transition: background-color 0.3s ease, color 0.3s ease;
   position: relative;
   z-index: 1;
+  overflow: hidden; // Hide SVG overflow
 
   /* Remove the underline effect */
   /* &::after { display: none; } */ 
@@ -103,8 +104,6 @@ const NavLink = styled.a`
 // --- Mobile Navigation Toggle --- 
 const MobileNavToggle = styled(motion.button)`
   display: none; // Hidden by default
-  flex-direction: column;
-  justify-content: space-around;
   width: 2rem;
   height: 1.5rem;
   background: transparent;
@@ -112,6 +111,7 @@ const MobileNavToggle = styled(motion.button)`
   cursor: pointer;
   padding: 0;
   z-index: 10;
+  position: relative; // Needed for absolute positioning of spans
 
   &:focus {
     outline: none;
@@ -122,27 +122,31 @@ const MobileNavToggle = styled(motion.button)`
     height: 0.18rem; // Line thickness
     background: var(--white);
     border-radius: 10px;
-    transition: all 0.3s linear;
-    position: relative;
-    transform-origin: 1px;
+    transition: all 0.3s ease-in-out; // Smoother transition
+    position: absolute; // Use absolute positioning
+    left: 0;
+    transform-origin: center; // Rotate around center
 
-    // Animate lines into an X when open
     &:first-child {
-      transform: ${props => props.isOpen ? 'rotate(45deg)' : 'rotate(0)'};
+      top: 0; // Position top line in closed state
+      transform: ${props => props.isOpen ? 'translateY(0.65rem) rotate(45deg)' : 'rotate(0)'}; // Adjust Y based on height/gap
     }
 
     &:nth-child(2) {
+      top: 0.65rem; // Position middle line centrally (adjust based on height/gap)
       opacity: ${props => props.isOpen ? '0' : '1'};
-      transform: ${props => props.isOpen ? 'translateX(20px)' : 'translateX(0)'};
+      // No transform needed for fade
     }
 
     &:nth-child(3) {
-      transform: ${props => props.isOpen ? 'rotate(-45deg)' : 'rotate(0)'};
+      bottom: 0; // Position bottom line in closed state
+      // Use bottom: 0 for positioning, then translate up and rotate
+      transform: ${props => props.isOpen ? 'translateY(-0.65rem) rotate(-45deg)' : 'rotate(0)'}; // Adjust Y based on height/gap
     }
   }
 
   @media (max-width: 768px) {
-    display: flex; // Show on mobile
+    display: block; // Use block for absolute positioning context
   }
 `;
 // -------------------------------
@@ -204,9 +208,10 @@ const Header = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => {
         <NavPill initial="hidden" animate="visible" variants={{ visible: { transition: { delayChildren: 0.4 } } }}>
           <NavLinks>
             <motion.div variants={navItemVariants}><NavLink href="#hero">Начало</NavLink></motion.div>
-            <motion.div variants={navItemVariants}><NavLink href="#quality">Концепция</NavLink></motion.div>
-            <motion.div variants={navItemVariants}><NavLink href="#about-us">За нас</NavLink></motion.div>
             <motion.div variants={navItemVariants}><NavLink href="#menu">Меню</NavLink></motion.div>
+            <motion.div variants={navItemVariants}><NavLink href="#quality">Качество</NavLink></motion.div>
+            <motion.div variants={navItemVariants}><NavLink href="#about-us">За нас</NavLink></motion.div>
+            <motion.div variants={navItemVariants}><NavLink href="#testimonials">Отзиви</NavLink></motion.div>
             <motion.div variants={navItemVariants}><NavLink href="#contact">Контакти</NavLink></motion.div>
           </NavLinks>
         </NavPill>
@@ -216,21 +221,6 @@ const Header = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => {
             className="glf-button"
             data-glf-cuid="d1ca8277-0183-41a8-92ea-0021fb1c65a1"
             data-glf-ruid="4673b41b-2e2e-4758-8223-63f883a930bc"
-            style={{
-              display: 'inline-block',
-              background: 'var(--orange-red)',
-              color: 'white',
-              padding: '0.6rem 1.3rem',
-              borderRadius: '4px',
-              fontWeight: 600,
-              fontSize: '0.85rem',
-              textTransform: 'uppercase',
-              letterSpacing: '0.8px',
-              cursor: 'pointer',
-              boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
-              border: 'none',
-              textAlign: 'center'
-            }}
           >
             Поръчай сега
           </span>
