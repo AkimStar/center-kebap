@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/center-kebap/static/css/main.e6c13ad2.css",
-    "main.js": "/center-kebap/static/js/main.7fb69afc.js",
-    "index.html": "/center-kebap/index.html",
-    "main.e6c13ad2.css.map": "/center-kebap/static/css/main.e6c13ad2.css.map",
-    "main.7fb69afc.js.map": "/center-kebap/static/js/main.7fb69afc.js.map"
+    "main.css": "/static/css/main.e6c13ad2.css",
+    "main.js": "/static/js/main.a541fe64.js",
+    "index.html": "/index.html",
+    "main.e6c13ad2.css.map": "/static/css/main.e6c13ad2.css.map",
+    "main.a541fe64.js.map": "/static/js/main.a541fe64.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.7fb69afc.js"
+    "static/js/main.a541fe64.js"
   ]
 }
