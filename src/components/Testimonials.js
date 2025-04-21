@@ -62,7 +62,7 @@ const TestimonialsGrid = styled(motion.div)`
 // Individual testimonial card
 const TestimonialCard = styled(motion.div)`
   background-color: rgba(20, 20, 20, 0.65);
-  backdrop-filter: blur(8px);
+  // backdrop-filter: blur(8px); // Temporarily commented out for testing
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 15px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
@@ -119,7 +119,7 @@ const gridVariant = {
     opacity: 1,
     transition: {
       staggerChildren: 0.2,
-      delayChildren: 0.3 // Delay after title animation
+      delayChildren: 0.1
     }
   }
 };
@@ -153,10 +153,6 @@ const Testimonials = () => {
     <TestimonialsContainer 
       id="testimonials" 
       className="section"
-      variants={sectionVariant}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.15 }}
     >
       <FoodIconsBackground />
       <Container>
@@ -173,7 +169,7 @@ const Testimonials = () => {
           variants={gridVariant}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }} // Trigger slightly earlier for grid
+          viewport={{ once: true, amount: 0.3 }}
         >
           {testimonialsData.map(testimonial => (
             <TestimonialCard key={testimonial.id} variants={cardVariant}>

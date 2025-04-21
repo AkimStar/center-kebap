@@ -49,7 +49,7 @@ const SectionTitle = styled(motion.h2)`
   }
 `;
 
-const ContactLayout = styled.div`
+const ContactLayout = styled(motion.div)`
   display: grid;
   grid-template-columns: 1fr 1.5fr; // Info column smaller than map column
   gap: 3rem;
@@ -183,6 +183,28 @@ const Separator = styled.div`
   margin: 1.5rem 0;
 `;
 
+// Define a layout variant specifically for staggering children
+const layoutStaggerVariant = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2, // Stagger ContactInfo and MapWrapper
+      delayChildren: 0.1
+    }
+  }
+};
+
+const contentVariants = {
+  hidden: { opacity: 0, x: -50 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: 'easeOut' } }
+};
+
+const mapVariants = {
+  hidden: { opacity: 0, x: 50 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: 'easeOut', delay: 0.2 } }
+};
+
 const Contact = () => {
   // Contact Info
   const address = "Гр. Силистра ул. Добрич №71";
@@ -191,38 +213,27 @@ const Contact = () => {
   const hours = "Понеделник - Неделя: 10:00 - 19:00";
   const mapSrc = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d716.1340166061667!2d27.271125919713548!3d44.11356396105441!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b01f000d74d967%3A0x68f23b09209bfdbb!2z0KbQtdC90YLRitGAINCa0LXQsdCw0L8!5e0!3m2!1sbg!2sbg!4v1745072915775!5m2!1sbg!2sbg";
 
-  const contentVariants = {
-    hidden: { opacity: 0, x: -50 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: 'easeOut' } }
-  };
-
-  const mapVariants = {
-    hidden: { opacity: 0, x: 50 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: 'easeOut', delay: 0.2 } }
-  };
-
   return (
     <ContactContainer 
       id="contact" 
       className="section"
-      variants={sectionVariant}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.15 }}
     >
       <FoodIconsBackground />
       <Container className="container">
         <ContactTitleWrapper>
           <ContactTitle>Контакти</ContactTitle>
         </ContactTitleWrapper>
-        <ContactLayout>
-          <ContactInfo variants={contentVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }}>
-            {/* Top centered text */}
+        <ContactLayout
+          variants={layoutStaggerVariant}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          <ContactInfo variants={contentVariants}>
             <div style={{ textAlign: 'center', fontWeight: 600, color: 'rgba(255,255,255,0.95)', fontSize: '1.1rem' }}>
               Намерете ни лесно или се свържете с нас.
             </div>
             <Separator />
-            {/* Middle: contact info list */}
             <ContactList>
               <ContactItem>
                 <MapPinIcon />
@@ -238,12 +249,11 @@ const Contact = () => {
               </ContactItem>
             </ContactList>
             <Separator />
-            {/* Bottom centered text */}
             <div style={{ textAlign: 'center', fontWeight: 600, color: 'rgba(255,255,255,0.95)', fontSize: '1.1rem' }}>
               Очакваме Ви!
             </div>
           </ContactInfo>
-          <MapWrapper variants={mapVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }}>
+          <MapWrapper variants={mapVariants}>
             <iframe 
                 src={mapSrc}
                 width="600" 
@@ -257,7 +267,6 @@ const Contact = () => {
           </MapWrapper>
         </ContactLayout>
       </Container>
-      {/* Add decorative elements here if desired, similar to Menu */}
     </ContactContainer>
   );
 };

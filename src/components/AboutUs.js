@@ -19,7 +19,7 @@ const Container = styled.div`
 `;
 
 // Use a similar layout to Quality section
-const AboutUsLayout = styled.div`
+const AboutUsLayout = styled(motion.div)`
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   align-items: center;
@@ -139,12 +139,33 @@ const AboutText = styled.p`
   }
 `;
 
-const sectionVariant = {
-  hidden: { opacity: 0, y: 30 },
+// --- Define animation variants --- //
+const layoutVariant = {
+  hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    y: 0,
-    transition: { duration: 0.7, ease: 'easeOut' }
+    transition: {
+      staggerChildren: 0.2, 
+      delayChildren: 0.1 // Adjusted delay slightly
+    }
+  }
+};
+
+const imageVariant = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: { 
+    opacity: 1, 
+    scale: 1, 
+    transition: { duration: 0.9, ease: 'easeOut' } 
+  }
+};
+
+const contentVariant = {
+  hidden: { opacity: 0, x: 50 },
+  visible: { 
+    opacity: 1, 
+    x: 0, 
+    transition: { duration: 0.8, ease: 'easeOut' } 
   }
 };
 
@@ -156,34 +177,25 @@ const AboutUs = () => {
     <AboutUsContainer 
       id="about-us" 
       className="section"
-      variants={sectionVariant}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.15 }}
     >
       <FoodIconsBackground />
       <Container className="container">
         <AboutTitleWrapper>
           <AboutTitle>За нас</AboutTitle>
         </AboutTitleWrapper>
-        <AboutUsLayout>
-          <AboutImageWrapper
-            initial={{ opacity: 0, scale: 0.8, rotate: 0 }}
-            whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.9, ease: 'easeOut' }}
-          >
+        <AboutUsLayout
+          variants={layoutVariant}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          <AboutImageWrapper variants={imageVariant}>
             <AboutImage>
               <img src={imageUrl} alt="Фикрет Исмаил - Главен готвач и собственик" />
             </AboutImage>
           </AboutImageWrapper>
 
-          <AboutContent
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.8, delay: 0.1, ease: 'easeOut' }}
-          >
+          <AboutContent variants={contentVariant}>
             <AboutText>
               В сърцето на Център Кебап е нашият сплотен екип, ръководен от главния готвач и собственик <strong>Фикрет Исмаил</strong>. Заедно споделяме страстта към храната и ангажимента към перфектния вкус.
             </AboutText>
