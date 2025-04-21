@@ -133,7 +133,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   /* Global Styles for GloriaFood Button */
-  span.glf-button {
+  .glf-button {
     /* Apply standard styles first */
     display: inline-block !important;
     font-family: var(--font-primary) !important;
@@ -158,11 +158,11 @@ const GlobalStyles = createGlobalStyle`
 
   /* Override for smaller header button */
   /* Assuming HeaderRight styled component keeps its unique class name */
-  header span.glf-button, /* General header context */
-  div[class*="Header__HeaderRight"] span.glf-button /* More specific using styled-components generated class */
+  header .glf-button, /* General header context */
+  div[class*="Header__HeaderRight"] .glf-button /* More specific using styled-components generated class */
   {
     font-size: 0.7rem !important; 
-    padding: 0.5rem 0.8rem !important; 
+    padding: 0.65rem 0.8rem !important; 
   }
 
   // Add more helpers if needed

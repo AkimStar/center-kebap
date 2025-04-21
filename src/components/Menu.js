@@ -299,13 +299,14 @@ const Menu = () => {
           ))}
         </MenuList>
         <div style={{ display: 'flex', justifyContent: 'center', marginTop: '2.5rem' }}>
-          <span
+          <a
             className="glf-button"
-            data-glf-cuid="d1ca8277-0183-41a8-92ea-0021fb1c65a1"
-            data-glf-ruid="4673b41b-2e2e-4758-8223-63f883a930bc"
+            href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=4673b41b-2e2e-4758-8223-63f883a930bc&client_is_mobile=true&return_url=https%3A%2F%2Fcenterkebap.com%2F"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             РАЗГЛЕДАЙ ЦЯЛОТО МЕНЮ
-          </span>
+          </a>
         </div>
       </Container>
     </MenuContainer>

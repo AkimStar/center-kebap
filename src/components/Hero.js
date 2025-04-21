@@ -128,13 +128,14 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }} 
           transition={{ duration: 0.8, delay: 0.9, ease: 'easeOut' }}
         >
-          <span
+          <a
             className="glf-button"
-            data-glf-cuid={glfCuid}
-            data-glf-ruid={glfRuid}
+            href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=4673b41b-2e2e-4758-8223-63f883a930bc&client_is_mobile=true&return_url=https%3A%2F%2Fcenterkebap.com%2F"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             Поръчай сега
-          </span>
+          </a>
         </motion.div>
       </HeroContent>
     </HeroContainer>

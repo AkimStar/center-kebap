@@ -107,7 +107,7 @@ const QualityText = styled.p`
 const QualityImageWrapper = styled(motion.div)`
   grid-column: 7 / span 6; // Takes last 6 columns
   position: relative;
-  height: 450px;
+  height: 485px;
   display: flex; // Use flex for centering image maybe
   justify-content: center;
   align-items: center;
@@ -130,7 +130,7 @@ const QualityImage = styled.div`
   border-radius: 20px; 
   overflow: hidden;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-  transform: rotate(-3deg);
+  transform: rotate(0deg);
   position: relative; // Ensure image stays within bounds if needed
 
   img {
@@ -202,8 +202,8 @@ const Quality = () => {
           </QualityContent>
 
           <QualityImageWrapper
-            initial={{ opacity: 0, scale: 0.8, rotate: 10 }}
-            whileInView={{ opacity: 1, scale: 1, rotate: -3 }}
+            initial={{ opacity: 0, scale: 0.8, rotate: 0 }}
+            whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.9, ease: 'easeOut' }}
           >

@@ -39,7 +39,7 @@ const AboutUsLayout = styled.div`
 const AboutImageWrapper = styled(motion.div)`
   grid-column: 1 / span 6; // Takes first 6 columns
   position: relative;
-  height: 480px; // Adjust height as needed
+  height: 435px; // Adjust height as needed
   display: flex;
   justify-content: center;
   align-items: center;
@@ -63,14 +63,14 @@ const AboutImage = styled.div`
   overflow: hidden;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
   // Different rotation or effect?
-  transform: rotate(3deg); 
+  transform: rotate(0deg); 
   position: relative;
 
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center; // Ensure chef is centered
+    object-position: 50% 5%; // Ensure chef is centered
   }
 `;
 
@@ -168,8 +168,8 @@ const AboutUs = () => {
         </AboutTitleWrapper>
         <AboutUsLayout>
           <AboutImageWrapper
-            initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
-            whileInView={{ opacity: 1, scale: 1, rotate: 3 }}
+            initial={{ opacity: 0, scale: 0.8, rotate: 0 }}
+            whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.9, ease: 'easeOut' }}
           >
