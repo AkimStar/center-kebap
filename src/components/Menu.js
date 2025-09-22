@@ -170,28 +170,28 @@ const menuItems = [
     id: 1,
     title: 'Дюнер лаваш (голям)',
     description: 'Голяма порция традиционен дюнер с прясно месо, зеленчуци и специален сос в лаваш.',
-    price: '8,00',
+    price: '9,00',
     image: process.env.PUBLIC_URL + '/menu/1.png'
   },
   {
     id: 2,
     title: 'Телешки бургер',
     description: 'Традиционен говежди бургер с прясно телешко месо, свежи зеленчуци и специален сос в меко бриош хлебче.',
-    price: '7,00',
+    price: '7,50',
     image: process.env.PUBLIC_URL + '/menu/2.png'
   },
   {
     id: 3,
     title: 'Пилешки бургер',
     description: 'Вкусен пилешки бургер с нежно филе, свежа салата, домат и специален сос, поднесен в прясна питка.',
-    price: '6,00',
+    price: '6,50',
     image: process.env.PUBLIC_URL + '/menu/3.png'
   },
   {
     id: 4,
     title: 'Пилешки крилца',
     description: 'Хрупкави пилешки крилца, овкусени с ароматни подправки и изпечени до съвършенство.',
-    price: '5,00',
+    price: '7,00',
     image: process.env.PUBLIC_URL + '/menu/4.png'
   },
   {
@@ -205,7 +205,7 @@ const menuItems = [
     id: 6,
     title: 'Ляхмаджун',
     description: 'Тънка питка, покрита с фино смляно месо, подправки, доматен сос и магданоз.',
-    price: '4,00',
+    price: '5,50',
     image: process.env.PUBLIC_URL + '/menu/6.png'
   },
 ];
